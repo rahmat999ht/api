@@ -6,7 +6,7 @@ const mysql = require('mysql');
 const dbConn = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  port: '8888',
+  // port: '8888',
   password: '',
   database: 'db_mahasiswa'
 });

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Setup server port
-const port = process.env.PORT || 5230;
+const port = process.env.PORT || 5000;
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -19,11 +19,9 @@ app.get('/', (req, res) => {
 });
 
 // Require employee routes
-const users = require('./src/routes/users.routes')
 const mahasiswa = require('./src/routes/stok.routes')
 
 // using as middleware
-app.use('/api/v1/users', users)
 app.use('/api/v1/mahasiswa', mahasiswa)
 
 // listen for requests

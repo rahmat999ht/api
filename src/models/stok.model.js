@@ -1,17 +1,17 @@
-"user strict";
+
 var dbConn = require("../../config/db.config");
 
 var Mahasiswa = function (mhs) {
-  this.id = mhs.id;
-  this.name = mhs.name;
-  this.stb = mhs.stb;
-  this.major = mhs.major;
+  this.id_mhs = mhs.id_mhs;
+  this.name_mhs = mhs.name_mhs;
+  this.stb_mhs = mhs.stb_mhs;
+  this.major_mhs = mhs.major_mhs;
   this.gender = mhs.gender;
   this.address = mhs.address;
 };
 
 Mahasiswa.create = function (newMhs, result) {
-  dbConn.query("INSERT INTO mahasiswa set ?", newMhs, function (err, res) {
+  dbConn.query("INSERT INTO table_mahasiswa set ?", newMhs, function (err, res) {
     if (err) {
       result(err, null);
     } else {
@@ -22,7 +22,7 @@ Mahasiswa.create = function (newMhs, result) {
 
 Mahasiswa.findById = function (id, result) {
   dbConn.query(
-    "Select * from mahasiswa where id = ? ",
+    "Select * from table_mahasiswa where id_mhs = ? ",
     id,
     function (err, res) {
       if (err) {
@@ -36,24 +36,27 @@ Mahasiswa.findById = function (id, result) {
 };
 
 Mahasiswa.findAll = function (result) {
-  dbConn.query("SELECT * FROM mahasiswa", function (err, res) {
+  dbConn.query("SELECT * FROM table_mahasiswa", function (err, res) {
     if (err) {
       console.log("error: ", err);
       result(null, err);
     } else {
-      console.log("users : ", res);
+      console.log("mhs : ", res);
       result(null, res);
     }
   });
 };
 
-Mahasiswa.update = function (id, user, result) {
+Mahasiswa.update = function (id, mhs, result) {
   dbConn.query(
-    "UPDATE mahasiswa SET golongan=?,stock=?,pmi_id=? WHERE id = ?",
-    [
-      user.golongan,
-      user.stock,
-      user.pmi_id,
+    // "UPDATE table_mahasiswa SET golongan=?,stock=?,pmi_id=? WHERE id = ?",
+    "UPDATE table_mahasiswa SET name_mhs = ?, stb_mhs = ?, major_mhs = ?, gender = ?, address = ? WHERE id_mhs =?",
+      [
+      mhs.name_mhs,
+      mhs.stb_mhs,
+      mhs.major_mhs,
+      mhs.gender,
+      mhs.address,
       id,
     ],
     function (err, res) {
@@ -68,7 +71,7 @@ Mahasiswa.update = function (id, user, result) {
 };
 
 Mahasiswa.delete = function (id, result) {
-  dbConn.query("DELETE FROM mahasiswa WHERE id = ?", [id], function (err, res) {
+  dbConn.query("DELETE FROM table_mahasiswa WHERE id_mhs = ?", [id], function (err, res) {
     if (err) {
       console.log("error: ", err);
       result(null, err);
