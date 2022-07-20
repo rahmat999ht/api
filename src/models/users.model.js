@@ -45,9 +45,6 @@ Users.create = function (newEmp, result) {
                   }
                 }
               );
-              // result(null,
-              //    res,
-              // );
             }
           });
         } else {

@@ -1,17 +1,17 @@
 "user strict";
 var dbConn = require("../../config/db.config");
 
-//Employee object create
-var Stock = function (stock) {
-  this.id = stock.id;
-  this.golongan = stock.golongan;
-  this.goldar = stock.goldar;
-  this.stock = stock.stock;
-  this.pmi_id = stock.pmi_id;
+var Mahasiswa = function (mhs) {
+  this.id = mhs.id;
+  this.name = mhs.name;
+  this.stb = mhs.stb;
+  this.major = mhs.major;
+  this.gender = mhs.gender;
+  this.address = mhs.address;
 };
 
-Stock.create = function (newEmp, result) {
-  dbConn.query("INSERT INTO stock set ?", newEmp, function (err, res) {
+Mahasiswa.create = function (newMhs, result) {
+  dbConn.query("INSERT INTO mahasiswa set ?", newMhs, function (err, res) {
     if (err) {
       result(err, null);
     } else {
@@ -20,9 +20,9 @@ Stock.create = function (newEmp, result) {
   });
 };
 
-Stock.findById = function (id, result) {
+Mahasiswa.findById = function (id, result) {
   dbConn.query(
-    "Select * from stock where id = ? ",
+    "Select * from mahasiswa where id = ? ",
     id,
     function (err, res) {
       if (err) {
@@ -35,8 +35,8 @@ Stock.findById = function (id, result) {
   );
 };
 
-Stock.findAll = function (result) {
-  dbConn.query("SELECT * FROM stock INNER JOIN goldar ON stock.golongan = goldar.id_goldar", function (err, res) {
+Mahasiswa.findAll = function (result) {
+  dbConn.query("SELECT * FROM mahasiswa", function (err, res) {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -47,9 +47,9 @@ Stock.findAll = function (result) {
   });
 };
 
-Stock.update = function (id, user, result) {
+Mahasiswa.update = function (id, user, result) {
   dbConn.query(
-    "UPDATE stock SET golongan=?,stock=?,pmi_id=? WHERE id = ?",
+    "UPDATE mahasiswa SET golongan=?,stock=?,pmi_id=? WHERE id = ?",
     [
       user.golongan,
       user.stock,
@@ -67,8 +67,8 @@ Stock.update = function (id, user, result) {
   );
 };
 
-Stock.delete = function (id, result) {
-  dbConn.query("DELETE FROM pmi WHERE id = ?", [id], function (err, res) {
+Mahasiswa.delete = function (id, result) {
+  dbConn.query("DELETE FROM mahasiswa WHERE id = ?", [id], function (err, res) {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -78,4 +78,4 @@ Stock.delete = function (id, result) {
   });
 };
 
-module.exports = Stock;
+module.exports = Mahasiswa;
