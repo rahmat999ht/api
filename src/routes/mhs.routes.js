@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const stok = require('../controllers/stok.controller');
+const stok = require('../controllers/mhs.controller');
 
 // Retrieve all employees
 router.get('/', stok.findAll);

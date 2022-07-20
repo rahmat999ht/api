@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // Require employee routes
-const mahasiswa = require('./src/routes/stok.routes')
+const mahasiswa = require('./src/routes/mhs.routes')
 
 // using as middleware
 app.use('/api/v1/mahasiswa', mahasiswa)

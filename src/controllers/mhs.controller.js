@@ -1,6 +1,6 @@
 'use strict';
 
-const Mahasiswa = require('../models/stok.model');
+const Mahasiswa = require('../models/mhs.model');
 
 exports.findAll = function(req, res) {
     Mahasiswa.findAll(function(err, user) {
